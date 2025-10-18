@@ -27,17 +27,19 @@ export class Serie{
             datosSerie.url,
             datosSerie.name,
             datosSerie.language,
-            datosSerie.generes,
+            datosSerie.genres,
             datosSerie.image
         );
     }
 
     static guardarSerie(serie) {
-    const guardadas = JSON.parse(localStorage.getItem("series") || "[]");
+    const guardadas = JSON.parse(localStorage.getItem("seriesGuardadas") || "[]");
     guardadas.push(serie);
     localStorage.setItem("seriesGuardadas", JSON.stringify(guardadas));
     alert(`${serie.name}  fue guardada!`);
     }
+    /*TENER EN CUENTA COMO SE NOMBRA EL CONTENEDOR DONDE SE PUSHEA  GUARDADAS
+    A la 1er carga de las series(las que se muestran en inicio),  su contenedor tiene otro nombre... no te confundas con eso!!*/ 
 
     createHTMLElement() {
         const div = document.createElement("div");

@@ -103,7 +103,7 @@ header {
 }
 
 /* Botones de navegación */
-.botones_orden {
+.paginacion {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -121,7 +121,14 @@ header {
   cursor: pointer;
 }
 
-#ordenar_porGenero,
+
+.ordenamientos{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+#ordenar_porIdioma,
 #ordenar_porNombre{
   background-color: #e2d6f9;
   border: 1px solid #d6c2f0;

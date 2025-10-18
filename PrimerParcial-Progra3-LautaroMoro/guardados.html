@@ -17,7 +17,7 @@
                 <div id="series"></div>
                 <div class="ordenamientos">
                     <button id="ordenar_porNombre">Ordenar alfabeticamente</button>
-                    <button id="ordenar_porGenero">Ordenar por genero</button>
+                    <button id="ordenar_porIdioma">Ordenar por idioma</button>
                 </div>
             </section>
         </main>
@@ -28,26 +28,26 @@
         import { Serie } from "./serie.js";
 
         const contenedor = document.getElementById("series");
+        const guardadas = JSON.parse(localStorage.getItem("seriesGuardadas")) || [];
 
         function cargarGuardadas(){
-            const guardadas = JSON.parse(localStorage.getItem("seriesGuardadas")) || [];
+            contenedor.innerHTML = "";
             guardadas.forEach(ser => {
-                const carta = Carta.createFromJsonString(JSON.stringify(ser));
+                const serie = Serie.createFromJsonString(JSON.stringify(ser));
                 contenedor.appendChild(serie.createHTMLElement());
             });
         }
 
+
         document.getElementById("ordenar_porNombre").addEventListener("click", ()=> {
-            let guardadas = jSON.parse(localStorage.getItem("seriesGuardadas")) || [];
-            guardadas.sort((a, b) => a.nombre.localeCompare(b.nombre));
-            localStorage.setItem("series", JSON.stringify(guardadas));
+            guardadas.sort((a, b) => a.name.localeCompare(b.name));
+            localStorage.setItem("seriesGuardadas", JSON.stringify(guardadas));
             cargarGuardadas();
         });
 
-        document.getElementById("ordenar_porGenero").addEventListener("click", ()=> {
-            let guardadas = jSON.parse(localStorage.getItem("series")) || [];
-            guardadas.sort((a, b) => a.generes.localeCompare(b.generes));
-            localStorage.setItem("series", JSON.stringify(guardadas));
+        document.getElementById("ordenar_porIdioma").addEventListener("click", ()=> {
+            guardadas.sort((a, b) => a.language.localeCompare(b.language));
+            localStorage.setItem("seriesGuardadas", JSON.stringify(guardadas));
             cargarGuardadas();
         });
         

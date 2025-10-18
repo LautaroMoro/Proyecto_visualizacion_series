@@ -2,8 +2,8 @@ import { Serie } from "./serie.js";
 
 let series = [];
 function cargarGuardadas(){
-    const seGuardadas = JSON.parse(localStorage.getItem("series")) || [];
-    series = seGuardadas.map(sg => new Serie(sg.id, sg.url, sg.name, sg.generes, sg.image));
+    const seGuardadas = JSON.parse(localStorage.getItem("seriesGuardadas")) || [];
+    series = seGuardadas.map(sg => new Serie(sg.id, sg.url, sg.name, sg.language, sg.genres, sg.image));
 }
 
 const contenedorSeries = document.getElementById("series");
@@ -16,14 +16,15 @@ function mostrarSeries(){
 }
 
 document.getElementById("ordenar_porNombre").addEventListener("click", () =>{
-    series.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    series.sort((a, b) => a.name.localeCompare(b.name));
     mostrarSeries();
 });
 
-document.getElementById("ordenar_porGenero").addEventListener("click", () =>{
-    series.sort((a, b) => a.generes.localeCompare(b.generes));
+document.getElementById("ordenar_porIdioma").addEventListener("click", () =>{
+    series.sort((a, b) => a.language.localeCompare(b.language));
     mostrarSeries();
 });
+
 
 cargarGuardadas();
 mostrarSeries();
